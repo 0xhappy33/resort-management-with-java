@@ -1,8 +1,10 @@
 package models;
 
-public class House {
+import interfaces.Accomodation;
+
+public class House{
 	
-	protected int numberOfBed;
+	protected int mSize;
 	protected float mPrice;
 
 	public House() {
@@ -11,7 +13,7 @@ public class House {
 
 	public House(int numberOfBed, float mPrice) {
 		super();
-		this.numberOfBed = numberOfBed;
+		this.mSize = numberOfBed;
 		this.mPrice = mPrice;
 	}
 	

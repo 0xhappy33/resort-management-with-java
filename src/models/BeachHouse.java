@@ -1,7 +1,10 @@
 package models;
 
-public class BeachHouse extends House{
-	private int mNumOfBed;
+import interfaces.Accomodation;
+
+public class BeachHouse extends Accomodation{
+	private int mSize;
+	private String name;
 	private float mPrice;
 	
 	public BeachHouse() {
@@ -17,26 +20,32 @@ public class BeachHouse extends House{
 
 
 
-	public BeachHouse(int mNumOfBed, float mPrice) {
+	public BeachHouse(int mNumOfBed,String name, float mPrice) {
 		super();
-		this.mNumOfBed = mNumOfBed;
+		this.mSize = mNumOfBed;
+		this.name = name;
 		this.mPrice = mPrice;
 	}
 	public int getmNumOfBed() {
-		return mNumOfBed;
+		return mSize;
 	}
 	public void setmNumOfBed(int mNumOfBed) {
-		this.mNumOfBed = mNumOfBed;
+		this.mSize = mNumOfBed;
 	}
-	public float getmPrice() {
-		return mPrice;
-	}
+	
 	public void setmPrice(float mPrice) {
 		this.mPrice = mPrice;
 	}
 	@Override
 	public String toString() {
-		return "BeachHouse [mNumOfBed=" + mNumOfBed + ", mPrice=" + mPrice + "]";
+		return "BeachHouse [mNumOfBed=" + mSize + ", mPrice=" + mPrice + "]";
+	}
+
+
+	@Override
+	public float getPrice() {
+		// TODO Auto-generated method stub
+		return mPrice;
 	}
 	
 	

@@ -1,12 +1,14 @@
 package models;
 
-public class Villa extends House{
-	private int mNumberOfBed;
+import interfaces.Accomodation;
+
+public class Villa extends Accomodation{
+	private int mSize;
 	private float mPrice;
 	
 	public Villa(int mNumberOfBed, float price) {
 		super();
-		this.mNumberOfBed = mNumberOfBed;
+		this.mSize = mNumberOfBed;
 		this.mPrice = price;
 	}
 	
@@ -22,16 +24,13 @@ public class Villa extends House{
 	}
 
 	public int getmNumberOfBed() {
-		return mNumberOfBed;
+		return mSize;
 	}
 
 	public void setmNumberOfBed(int mNumberOfBed) {
-		this.mNumberOfBed = mNumberOfBed;
+		this.mSize = mNumberOfBed;
 	}
 
-	public float getmPrice() {
-		return mPrice;
-	}
 
 	public void setmPrice(float mPrice) {
 		this.mPrice = mPrice;
@@ -39,7 +38,12 @@ public class Villa extends House{
 
 	@Override
 	public String toString() {
-		return "Villa [mNumberOfBed=" + mNumberOfBed + ", mPrice=" + mPrice + "]";
+		return "Villa [mNumberOfBed=" + mSize + ", mPrice=" + mPrice + "]";
+	}
+
+	@Override
+	public float getPrice() {
+		return mPrice;
 	}
 	
 	

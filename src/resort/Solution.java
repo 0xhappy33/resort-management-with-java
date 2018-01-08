@@ -2,11 +2,13 @@ package resort;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import models.BeachHouse;
+import models.Customer;
 import models.SwimmingPool;
 import models.Villa;
 import solution.Actions;
@@ -20,9 +22,15 @@ public class Solution {
 	
 	private String checkInDate, checkOutDate;
 	
+	private Customer cus;
 	
+	private String checkInHour;
 	public void inputInformationOfCustomer() throws ParseException {
 		sc = new Scanner(System.in);
+		
+		createCheckInHour();
+		
+		checkCustomerAndStoreInVariable();
 		
 		System.out.println("What do you rent: ");
 		System.out.println("1. Vila or 2.Beach house");
@@ -32,25 +40,49 @@ public class Solution {
 		
 		// check days the customer stays here
 		checkEnterDaysStay();
-		
-		
+	}
+	
+	@SuppressWarnings("unused")
+	private void displayAllCustomer() {
+		displayTheCustomer();
+		System.out.println("The time which the customer check in is : " + Calendar.getInstance().getTime());
 		switch(n) {
 			case 1: 
 				obj = new Villa();
-				//displayBill();
-				System.out.println("Total bill: $" + ((Villa) obj).getmPrice() * numberOfDaysStay);
+				displayBill(((Villa) obj).getPrice() * numberOfDaysStay);
 				break;
 			case 2:
 				obj = new BeachHouse();
-				//displayBill();
-				System.out.println("Total bill: $" +((BeachHouse) obj).getmPrice() * numberOfDaysStay);
+				displayBill(((BeachHouse) obj).getPrice() * numberOfDaysStay);
 				break;
 			default:
 				break;
 		}
 		
-		//displayBill();
+	}
 	
+	
+	@SuppressWarnings({ "unused", "deprecation" })
+	private void createCheckInHour() {
+		checkInHour = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+		System.out.println("Now is : " + checkInHour);
+		if(Calendar.getInstance().getTime().getHours() < 8) {
+			System.out.println("Please check in later, after 9:00");
+			return;
+		}
+	}
+	
+	private void displayTheCustomer() {
+		System.out.println(cus);
+		
+	}
+
+	public void checkCustomerAndStoreInVariable() {
+		System.out.println("Please enter the customer with { Name and Age }: ");
+		String name = sc.nextLine();
+		int age = sc.nextInt();
+		
+		cus = new Customer(name, age);
 	}
 	
 	public void checkEnterMenu() {
@@ -61,7 +93,6 @@ public class Solution {
 			}
 		}while(n < 0 || n > 2);
 	}
-	
 	
 	
 	public void checkEnterDaysStay() throws ParseException {
@@ -84,8 +115,8 @@ public class Solution {
 	}
 	
 	
-	public void displayBill() {
-		System.out.println("Total of bills: " + obj);
+	public void displayBill(float totalBill) {
+		System.out.println("Total of bills: $" + totalBill);
 	}
 	
 	public void recomendationForDaysToStayWithMoney(int money) {
@@ -107,10 +138,10 @@ public class Solution {
 	
 	public int recomendation(Object obj, int money) {
 		if(obj instanceof Villa) {
-			return (int) (money / ((Villa)obj).getmPrice());
+			return (int) (money / ((Villa)obj).getPrice());
 		}else
 			if(obj instanceof BeachHouse) {
-				return (int) (money / ((BeachHouse)obj).getmPrice());
+				return (int) (money / ((BeachHouse)obj).getPrice());
 			} 
 		return 0;
 	}
@@ -126,6 +157,6 @@ public class Solution {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//solution.displayBill();
+		solution.displayAllCustomer();
 	}
 }

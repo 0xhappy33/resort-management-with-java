@@ -10,10 +10,10 @@ public class Actions {
 
 	public static float getBill(Object obj, int num) {
 		if(obj instanceof Villa) {
-			return villa.getmPrice() * num;  
+			return villa.getPrice() * num;  
 		}else
 			if(obj instanceof BeachHouse) {
-				return beachHouse.getmPrice() * num;
+				return beachHouse.getPrice() * num;
 			}
 		return 0;
 	}

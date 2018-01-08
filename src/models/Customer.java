@@ -26,7 +26,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + mName + ", age=" + mAge + "]";
+		return "Customer << name : " + mName + ", age : " + mAge + " >>";
 	}
 	
 	
